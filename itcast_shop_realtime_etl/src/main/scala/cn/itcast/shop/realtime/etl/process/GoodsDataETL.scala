@@ -13,7 +13,7 @@ import redis.clients.jedis.Jedis
 import org.apache.flink.api.scala._
 
 /**
- * 商品数据的实时ETL操作
+ * 4、商品数据的实时ETL操作
  * @param env
  */
 case class GoodsDataETL(env: StreamExecutionEnvironment)  extends  MysqlBaseETL(env){
@@ -124,7 +124,7 @@ case class GoodsDataETL(env: StreamExecutionEnvironment)  extends  MysqlBaseETL(
       JSON.toJSONString(goodsWideEntity, SerializerFeature.DisableCircularReferenceDetect)
     })
 
-    //4：将商品数据写入到kafka集群
+    //4：将商品数据写入到kafka集群(写进kafka，druid摄取)
     goodsWideJsonDataStream.addSink(kafkaProducer(GlobalConfigUtil.`output.topic.goods`))
   }
 }

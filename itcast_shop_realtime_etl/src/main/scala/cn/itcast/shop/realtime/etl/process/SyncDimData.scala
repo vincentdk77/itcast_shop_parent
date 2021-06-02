@@ -29,6 +29,7 @@ case class SyncDimData(env: StreamExecutionEnvironment) extends MysqlBaseETL(env
      */
     //1：获取数据源
     val canalDataStream: DataStream[CanalRowData] = getKafkaDataStream();
+    canalDataStream
 
     //2：过滤出来维度表
     val dimRowDataStream: DataStream[CanalRowData] = canalDataStream.filter {
@@ -70,9 +71,9 @@ case class SyncDimData(env: StreamExecutionEnvironment) extends MysqlBaseETL(env
       override def invoke(rowData: CanalRowData, context: SinkFunction.Context[_]): Unit = {
         //根据操作类型的不同，调用不同的业务逻辑实现数据的更新
         rowData.getEventType match {
-          case eventType if(eventType == "insert" || eventType == "update") => updateDimData(rowData)
+          case eventType if(eventType == "insert" || eventType == "update") => updateDimData(rowData) // TODO: 这里其实直接用if就好了嘛，语法反而不好理解
           case "delete" => deleteDimData(rowData)
-          case _ =>
+          case _ => // 都不匹配，不处理
         }
       }
 

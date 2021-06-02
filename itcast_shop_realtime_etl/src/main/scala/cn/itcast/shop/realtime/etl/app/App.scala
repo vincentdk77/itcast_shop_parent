@@ -58,7 +58,7 @@ object App {
 
     //TODO 5：实现所有ETL业务
     //5.1：维度数据的增量到redis中
-    val syncDataProcess: SyncDimData = new SyncDimData(env)
+    val syncDataProcess: SyncDimData = new SyncDimData(env) // TODO: kafka设置的“自动提交”offset，可能会有问题
     syncDataProcess.process()
 
     //5.2：点击流日志的实时ETL

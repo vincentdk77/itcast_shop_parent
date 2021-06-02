@@ -10,7 +10,7 @@ import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironm
 import org.apache.flink.streaming.api.scala._
 
 /**
- * 订单数据的实时ETL
+ * 2、订单数据的实时ETL
  * @param env
  */
 case class OrderDataETL(env: StreamExecutionEnvironment) extends MysqlBaseETL(env){
@@ -42,7 +42,7 @@ case class OrderDataETL(env: StreamExecutionEnvironment) extends MysqlBaseETL(en
     //打印测试
     orderDBEntityJsonDataStream.printToErr("订单数据>>>")
 
-    //4：将转换后的json字符串写入到kafka集群
+    //4：将转换后的json字符串写入到kafka集群(写进kafka，druid摄取)
     orderDBEntityJsonDataStream.addSink(kafkaProducer(GlobalConfigUtil.`output.topic.order`))
   }
 }

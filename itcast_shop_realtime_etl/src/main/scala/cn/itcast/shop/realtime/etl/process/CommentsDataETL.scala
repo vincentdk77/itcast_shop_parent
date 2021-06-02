@@ -14,7 +14,7 @@ import org.apache.flink.configuration.Configuration
 import redis.clients.jedis.Jedis
 
 /**
- * 评论数据的实时ETL处理
+ * 6、评论数据的实时ETL处理
  * @param env
  */
 case class CommentsDataETL(env: StreamExecutionEnvironment) extends MQBaseETL(env){

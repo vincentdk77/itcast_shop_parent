@@ -16,7 +16,7 @@ import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironm
 import org.apache.flink.streaming.api.scala._
 
 /**
- * 点击流日志的实时ETL操作
+ * 1、点击流日志的实时ETL操作
  * 需要将点击流日志对象转换成拓宽后的点击流对象，增加省份、城市、时间字段
  * @param env
  */

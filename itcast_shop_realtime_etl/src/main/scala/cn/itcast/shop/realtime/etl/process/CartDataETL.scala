@@ -13,7 +13,7 @@ import org.apache.flink.configuration.Configuration
 import redis.clients.jedis.Jedis
 
 /**
- * 购物车实时ETL处理
+ * 5、购物车实时ETL处理
  * @param env
  *
  *  {"addTime":1576479746005,"count":1,"goodsId":"100106","guid":"f1eeb1d9-9ee9-4eec-88da-61f87ab0302c","ip":"123.125.71.102","userId":"100208"}

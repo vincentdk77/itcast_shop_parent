@@ -123,12 +123,12 @@ public class CanalClient {
             List<CanalEntry.RowData> columnDataList = rowChange.getRowDatasList();
             for (CanalEntry.RowData rowData : columnDataList) {
                 if(eventType.equals("insert") || eventType.equals("update")) {
-                    for (CanalEntry.Column column : rowData.getAfterColumnsList()) {
+                    for (CanalEntry.Column column : rowData.getAfterColumnsList()) {//getAfterColumnsList
                         columnDataMap.put(column.getName(), column.getValue().toString());
                     }
                 }
                 else if(eventType.equals("delete")) {
-                    for (CanalEntry.Column column : rowData.getBeforeColumnsList()) {
+                    for (CanalEntry.Column column : rowData.getBeforeColumnsList()) {//getBeforeColumnsList
                         columnDataMap.put(column.getName(), column.getValue().toString());
                     }
                 }

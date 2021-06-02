@@ -18,7 +18,7 @@ import org.apache.hadoop.hbase.client.{Connection, Put, Table}
 import org.apache.hadoop.hbase.util.Bytes
 
 /**
- * 订单明细的实时ETL操作
+ * 3、订单明细的实时ETL操作
  * 1）将订单明细数据的事实表和维度表的数据关联后写入到hbase中
  * 2）将拉宽后的订单数据保存到kafka中，供Druid进行实时摄取
  *
@@ -55,8 +55,8 @@ case class OrderDetailDataETL(env: StreamExecutionEnvironment) extends MysqlBase
      * [TimeUnit.SECONDS]：超时的时间单位
      * [100]：异步io的最大并发数
      */
-    val orderGoodsWideEntityDataStream: DataStream[OrderGoodsWideEntity] = AsyncDataStream.unorderedWait(orderGoodsCanalDataStream, new AsyncOrderDetailRedisRequest(),
-      100, TimeUnit.SECONDS, 100)
+    val orderGoodsWideEntityDataStream: DataStream[OrderGoodsWideEntity] =
+        AsyncDataStream.unorderedWait(orderGoodsCanalDataStream, new AsyncOrderDetailRedisRequest(),100, TimeUnit.SECONDS, 100)
 
     orderGoodsWideEntityDataStream.printToErr("拉宽后的订单明细数据>>>")
 
